@@ -1,19 +1,23 @@
-# EDA_Penguins_grupo4
-Proyecto grupal sobre EDA
+# Proyecto grupal sobre EDA
 
 # Integrantes del equipo:
-Michelle, Sara, Jenireè, Lucía L., Chiara.
+*[Chiara Contreras](https://github.com/chiaracont)   
+[Jenireè Tovar](https://github.com/JenireeTovar)   
+[Michelle Olivares](https://github.com/michelleolivares86-tech)   
+[Lucía Llaneza](https://github.com/luciallaneza)   
+[Sara Bailón](https://github.com/Sara89359)*
 
 # Cliente: 
-Cliente: Organizacion de Investigacion Biologica Polar
+### Organizacion de Investigacion Biologica Polar
+
 
 ## 1) ¿Que solicita el cliente?
 
-Convertir el dataset Palmer Penguins en un informe exploratorio claro y util para toma de decisiones cientificas.
+Convertir el dataset **Palmer Penguins** en un informe exploratorio claro y util para toma de decisiones cientificas.
 
 ## 2) ¿Por qué es útil nuestro analísis?
 
-Queremos responder tres necesidades reales:
+Queremos responder **tres necesidades** reales:
 
 1. Entender diferencias observables entre especies y su distribucion por isla.
 2. Detectar riesgos de calidad del dato y posibles sesgos de muestreo.
@@ -23,8 +27,8 @@ Queremos responder tres necesidades reales:
 
 Nos vamos a centrar en las siguientes cuestiones:
 
-1. Que especies predominan y como se distribuyen.
-2. Que diferencias morfologicas relevantes aparecen entre especies.
-3. Que variables son mas utiles para entender perfiles biologicos.
-4. Que limitaciones tiene el dataset para interpretar resultados.
-5. Que recomendaciones concretas puede aplicar el cliente.
+1. Que **especies** predominan y como se distribuyen.
+2. Que **diferencias morfologicas** relevantes aparecen entre especies.
+3. Que variables son mas utiles para entender **perfiles biologicos**.
+4. Que **limitaciones** tiene el dataset para interpretar resultados.
+5. Que **recomendaciones concretas** puede aplicar el cliente.
