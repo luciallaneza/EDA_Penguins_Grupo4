@@ -464,15 +464,14 @@ def render_sidebar_bg(path: str):
     </style>
     """, unsafe_allow_html=True)
 
-def acto_header(numero: str, titulo: str, duracion: str, emoji: str):
+def acto_header(titulo: str, emoji: str):
     st.markdown(f"""
     <div class="acto-header">
         <div style="font-size:2rem;">{emoji}</div>
         <div>
-            <div class="acto-numero">{numero}</div>
             <div class="acto-titulo">{titulo}</div>
         </div>
-        <div class="acto-duracion">⏱ {duracion}</div>
+        
     </div>
     """, unsafe_allow_html=True)
 
@@ -488,24 +487,13 @@ df = carga_datos()
 #    Streamlit necesita ver los st.sidebar.* en el primer render para mostrarla.
 # ══════════════════════════════════════════════════════════════════════════════
 
+
 st.sidebar.markdown("---")
 
 # Bajar las opciones de la barra lateral a la parte inferior
 st.sidebar.markdown(
     "<div style='flex: 1; min-height: 300px;'></div>",
     unsafe_allow_html=True
-)
-
-st.sidebar.markdown("### 📊 Gráficos y Análisis")
-opcion_visual = st.sidebar.selectbox(
-    "Selecciona un gráfico:",
-    [
-        "Nada",
-        "Heatmap de correlaciones",
-        "Gráfico: Masa corporal por especie",
-        "Gráfico: Distribución por especie (pie chart)",
-        "Gráficos lmplot",
-    ]
 )
 
 st.sidebar.markdown("### 🗺️ Filtrar por isla")
@@ -553,24 +541,14 @@ else:
     df_especie = df
     resumen_especie = None
 
-# Gráfico seleccionado en sidebar
-if opcion_visual == "Gráfico: Masa corporal por especie":
-    grafico_masa_por_especie(df)
-elif opcion_visual == "Gráfico: Distribución por especie (pie chart)":
-    distribucion_especie(df)
-elif opcion_visual == "Gráficos lmplot":
-    graficos_lmplot(df)
-elif opcion_visual == "Heatmap de correlaciones":
-    heatmap_correlaciones(df)
-
 
 # ══════════════════════════════════════════════════════════════════════════════
-# ── ACTO 1: INTRODUCCIÓN  (~2 min) ───────────────────────────────────────────
+# ── INTRODUCCIÓN ───────────────────────────────────────────
 # ══════════════════════════════════════════════════════════════════════════════
 st.title("Iceberg Intelligence")
 render_audio_player("assets/musica_fondo.mp3")
 
-acto_header("Acto 1", "Introducción — Equipo y contexto del encargo", "~2 min", "🧊")
+acto_header("Introducción — Equipo y contexto del encargo", "🧊")
 
 with st.expander("👥 About Us — Iceberg Intelligence", expanded=False):
     st.markdown("""
@@ -627,9 +605,9 @@ with st.expander("📊 Métricas generales del dataset", expanded=True):
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# ── ACTO 2: QUÉ ENCONTRAMOS  (~5 min) ────────────────────────────────────────
+# ── QUÉ ENCONTRAMOS ────────────────────────────────────────
 # ══════════════════════════════════════════════════════════════════════════════
-acto_header("Acto 2", "Qué encontramos — Hallazgos del análisis exploratorio", "~5 min", "🔬")
+acto_header("Qué encontramos — Hallazgos del análisis exploratorio", "🔬")
 
 st.markdown("### 🐧 Pregunta 1 — ¿Qué especies predominan y cómo se distribuyen?")
 
@@ -643,6 +621,12 @@ with col2:
     else:
         st.info("Selecciona una isla en la barra lateral para ver el resumen.")
 
+    if resumen_especie is not None:
+        st.markdown("**Resumen filtrado por especie:**")
+        st.dataframe(resumen_especie)
+    else:
+        st.info("Selecciona una especie en la barra lateral para ver el resumen.")
+
 st.markdown("---")
 st.markdown("### 📐 Preguntas 2 y 3 — ¿Qué diferencias morfológicas hay? ¿Qué variables son más útiles?")
 
@@ -652,7 +636,6 @@ opcion_morfo = st.selectbox(
         "Masa corporal por especie",
         "Regresiones lineales (lmplot)",
         "Heatmap de correlaciones",
-        "Tabla filtrada por especie",
     ]
 )
 
@@ -662,12 +645,7 @@ elif opcion_morfo == "Regresiones lineales (lmplot)":
     graficos_lmplot(df)
 elif opcion_morfo == "Heatmap de correlaciones":
     heatmap_correlaciones(df)
-elif opcion_morfo == "Tabla filtrada por especie":
-    if resumen_especie is not None:
-        st.markdown("**Resumen filtrado por especie:**")
-        st.dataframe(resumen_especie)
-    else:
-        st.info("Selecciona una especie en la barra lateral para ver el resumen.")
+
 
 st.markdown("---")
 st.markdown("### 📋 Resumen de hallazgos del análisis")
@@ -744,9 +722,9 @@ with st.expander("📋 Ver todos los hallazgos", expanded=False):
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# ── ACTO 3: QUÉ NOS FRENA  (~4 min) ──────────────────────────────────────────
+# ── QUÉ NOS FRENA ──────────────────────────────────────────
 # ══════════════════════════════════════════════════════════════════════════════
-acto_header("Acto 3", "Qué nos frena — Limitaciones y sesgos del dataset", "~4 min", "⚠️")
+acto_header("Qué nos frena — Limitaciones y sesgos del dataset", "⚠️")
 
 st.markdown("### ❓ Pregunta 4 — ¿Qué limitaciones tiene el dataset?")
 
@@ -845,9 +823,9 @@ st.markdown(f"""
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# ── ACTO 4: QUÉ LE DECIMOS AL CLIENTE  (~3 min) ───────────────────────────────
+# ── ACTO 4: QUÉ LE DECIMOS AL CLIENTE ───────────────────────────────
 # ══════════════════════════════════════════════════════════════════════════════
-acto_header("Acto 4", "Qué le decimos al cliente — Recomendaciones concretas", "~3 min", "🎯")
+acto_header("Qué le decimos al cliente — Recomendaciones concretas", "🎯")
 
 st.markdown("### ✅ Pregunta 5 — ¿Qué recomendaciones concretas puede aplicar el cliente?")
 
