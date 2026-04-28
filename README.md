@@ -32,3 +32,9 @@ Nos vamos a centrar en las siguientes cuestiones:
 3. Qué variables son mas útiles para entender **perfiles biológicos**.
 4. Qué **limitaciones** tiene el dataset para interpretar resultados.
 5. Qué **recomendaciones concretas** puede aplicar el cliente.
+
+## 4) 🔗 Enlaces de interes: 
+
+💻 [Iceberg Intelligence App](https://icebergintelligence.streamlit.app/)
+
+🔨 [Progreso del proyecto](https://github.com/users/chiaracont/projects/1)
